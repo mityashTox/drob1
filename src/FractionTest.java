@@ -1,7 +1,7 @@
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -15,7 +15,7 @@ class FractionTest {
     private Fraction fraction4;
     private Fraction fraction5;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         fraction = new Fraction(1, 3);
         fraction1 = new Fraction(7, 5);
@@ -29,7 +29,6 @@ class FractionTest {
 
     @Test
     void plus() throws Exception {
-        setUp();
         Fraction res = fraction.plus(fraction1); // 26/15
         Fraction res2 = fraction.plus(fraction3);// 4/3
         Fraction res3 = fraction.plus(fraction4);// 1/3
@@ -58,7 +57,6 @@ class FractionTest {
 
     @Test
     void minus() throws Exception {
-        setUp();
         Fraction res = fraction.minus(fraction1);
         Fraction res2 = fraction.minus(fraction3);
         Fraction res3 = fraction.minus(fraction4);
@@ -81,7 +79,6 @@ class FractionTest {
 
     @Test
     void multiply() throws Exception {
-        setUp();
         Fraction res = fraction.multiply(fraction1);
         Fraction res2 = fraction.multiply(fraction3);
         Fraction res3 = fraction.multiply(fraction4);
@@ -104,7 +101,6 @@ class FractionTest {
 
     @Test
     void divide() throws Exception {
-        setUp();
         Fraction res = fraction.divide(fraction1);
         Fraction res2 = fraction.divide(fraction3);
         Fraction res4 = fraction.divide(fraction5);
@@ -123,7 +119,6 @@ class FractionTest {
 
     @Test
     void divideWithArithmeticException() throws Exception {
-        setUp();
         Fraction res3 = fraction.divide(fraction4);
 
         exception.expect(ArithmeticException.class);

@@ -1,12 +1,10 @@
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
-@RunWith(JUnit4.class)
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
 class FractionTest {
     private Fraction fraction;
     private Fraction fraction1;
@@ -24,15 +22,12 @@ class FractionTest {
         fraction5 = new Fraction(5, 1);
     }
 
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
-
     @Test
     void plus() throws Exception {
-        Fraction res = fraction.plus(fraction1); // 26/15
-        Fraction res2 = fraction.plus(fraction3);// 4/3
-        Fraction res3 = fraction.plus(fraction4);// 1/3
-        Fraction res4 = fraction.plus(fraction5);// 16/3
+        Fraction res = fraction.plus(fraction1);
+        Fraction res2 = fraction.plus(fraction3);
+        Fraction res3 = fraction.plus(fraction4);
+        Fraction res4 = fraction.plus(fraction5);
 
         Assert.assertEquals(26, res.getNumerator());
         Assert.assertEquals(15, res.getDenominator());
@@ -50,9 +45,8 @@ class FractionTest {
     }
 
     @Test
-    void constructorWithArithmeticException() {
-        fraction2 = new Fraction(3, 0);
-        exception.expect(ArithmeticException.class);
+    void constructorWithArithmeticException() throws ArithmeticException {
+        assertThrows(ArithmeticException.class, () -> {fraction2 = new Fraction(1, 0);});
     }
 
     @Test
@@ -118,13 +112,10 @@ class FractionTest {
     }
 
     @Test
-    void divideWithArithmeticException() throws Exception {
-        Fraction res3 = fraction.divide(fraction4);
-
-        exception.expect(ArithmeticException.class);
-
-        Assert.assertEquals(0, res3.getNumerator());
-        Assert.assertEquals(21, res3.getDenominator());
+    void divideWithArithmeticException() throws ArithmeticException {
+        assertThrows(ArithmeticException.class, () -> {Fraction res3 = fraction.divide(fraction4);
+            Assert.assertEquals(0, res3.getNumerator());
+            Assert.assertEquals(21, res3.getDenominator());});
     }
 
 
